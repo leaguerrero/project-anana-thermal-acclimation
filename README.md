@@ -1,10 +1,9 @@
 # project-anana-thermal-acclimation
 
-Missing values (NA)
-Some columns in the gene_methylation_matrix contain NA values. These values represent genes for which data were unavailable for one of the integrated data types used in downstream analyses. RNA-seq gene expression and whole-genome bisulfite sequencing (WGBS) methylation data were generated and processed independently. 
+Some cells in the gene_methylation_matrix contain NA values. These indicate cases where gene-level DNA methylation could not be calculated for a given gene in a given sample. Gene-level methylation estimates were derived from CpG methylation calls obtained from whole-genome bisulfite sequencing (WGBS). CpG sites were included only if they met coverage filtering criteria (minimum read depth ≥10 and additional quality filters) as described in the Methods.
 
-Gene-level methylation estimates were calculated only for genes that met coverage thresholds for CpG sites (minimum read depth ≥10 and coverage requirements across samples). As a result, some genes that had sufficient RNA-seq read counts did not have sufficient CpG coverage for reliable methylation estimation and therefore contain NA values in methylation columns. Conversely, some genes with methylation estimates may not have passed expression filtering thresholds.
+For some genes, no CpG sites passed these filtering thresholds in a given sample. In these cases, gene-level methylation could not be estimated and the value is recorded as NA.
 
-NA values therefore indicate missing measurements rather than zero methylation or zero expression, and typically arise from differences in sequencing coverage or filtering criteria between the RNA-seq and WGBS datasets.
+NA therefore represents missing measurements due to insufficient CpG coverage, not zero methylation.
 
 Missing values were retained rather than imputed to preserve the original structure of the merged dataset used in downstream analyses.
